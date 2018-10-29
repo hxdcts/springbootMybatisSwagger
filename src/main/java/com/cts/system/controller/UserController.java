@@ -4,19 +4,20 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSON;
+import com.cts.system.config.redis.sentinel.JedisSentinelPool;
 import com.cts.system.entity.User;
 import com.cts.system.entity.UserInput;
 import com.cts.system.entity.UserOut;
 import com.cts.system.service.UserService;
 import io.swagger.annotations.ApiOperation;
+import redis.clients.jedis.ShardedJedis;
   
 @RestController  
 @RequestMapping("/user")  
@@ -31,7 +32,6 @@ public class UserController {
 		List<User> user = userService.getUserInfo(u);
 		userOut.setList(user);
 		userOut.setRetCode("成功");
-        System.out.println(user.toString());
         return userOut;
     }
 	/**
