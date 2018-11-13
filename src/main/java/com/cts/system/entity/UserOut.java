@@ -1,15 +1,18 @@
 package com.cts.system.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import com.cts.system.base.BaseResponse;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;  
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ApiModel(value = "输出参数")
-public class UserOut<E> implements Serializable {  
+public class UserOut<E>  implements Serializable   {  
 	/**
 	 * position 表示排序
 	 * required 表示是否必须
@@ -25,6 +28,10 @@ public class UserOut<E> implements Serializable {
 	
 	@ApiModelProperty(value="用户列表", required = true, position = 4, example = "")
     private List<E> list;
+	public UserOut() {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		transTime = simpleDateFormat.format(new Date());
+	}
 	public String getRetCode() {
 		return retCode;
 	}

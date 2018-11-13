@@ -58,7 +58,7 @@ public class SwaggerConfig {
     
     
     @Bean
-    public FilterRegistrationBean restControllerFilterRegistration() {
+    public FilterRegistrationBean<RestControllerFilter> restControllerFilterRegistration() {
         FilterRegistrationBean<RestControllerFilter> filterRegistration = new FilterRegistrationBean<>();
         RestControllerFilter restControllerFilter = new RestControllerFilter();
         if (StringUtils.isNotBlank(restModuleUrl)) {

@@ -1,26 +1,17 @@
 package springbootMybatis;
 
-import java.util.List;
-import java.util.Map;
-
-import org.apache.coyote.http11.filters.VoidInputFilter;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.alibaba.druid.sql.ast.statement.SQLWithSubqueryClause.Entry;
-import com.alibaba.fastjson.JSON;
 import com.cts.system.Application;
-import com.cts.system.config.redis.salve.RedisHelperImpl;
-import com.cts.system.config.redis.sentinel.JedisSentinelPool;
-import com.cts.system.entity.User;
 import com.cts.system.entity.UserInput;
+import com.cts.system.redis.pool.sentinel.JedisSentinelPool;
+import com.cts.system.redis.pool.slave.RedisHelperImpl;
 import com.cts.system.service.UserService;
 
-import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.ShardedJedis;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes=Application.class)
@@ -35,7 +26,7 @@ public class TestUser {
 
 	public void testQuery(){
 			UserInput input = new UserInput();
-			input.setId(2L);
+			input.setName("test");
 			userService.getUserInfo(input);
 			
 		}

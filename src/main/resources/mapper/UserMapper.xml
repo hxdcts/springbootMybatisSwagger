@@ -3,22 +3,28 @@
 <mapper namespace="com.cts.system.mapper.UserMapper">
  
   <select id="findUserInfo" resultType="com.cts.system.entity.User"  parameterType="com.cts.system.entity.UserInput">
-    select id,name  from user where 1=1
-    <if test="id != null and id != ''">
-    		and id = #{id}
-    </if>
+    select *  from user where 1=1
+
     <if test="name != null and name!= ''">
     		and name = #{name}
     </if>
+    <if test="mobile != null and mobile!= ''">
+    		and mobile = #{mobile}
+    </if>
   </select>
   <insert id="addUserInfo" parameterType="com.cts.system.entity.User">
-  	insert into user (id, name
-      )
-    values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}
+  	insert into user (name,password,mobile)
+    values ( #{name,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{mobile,jdbcType=VARCHAR}
       )
   </insert>
   <delete id="delUserInfo" parameterType="java.lang.Integer">
    delete from user where id = #{id,jdbcType=INTEGER}
   </delete>
  
+ 	<select id="findByUserMobile" parameterType="string" resultType="com.cts.system.entity.User">
+ 		select * from user where mobile = #{mobile} limit 1
+ 	</select>
+ 	<select id="findUserById"  parameterType="string" resultType="com.cts.system.entity.User">
+ 		select * from user where id = #{id} limit 1
+ 	</select>
 </mapper>

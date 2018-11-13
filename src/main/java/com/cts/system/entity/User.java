@@ -2,15 +2,27 @@ package com.cts.system.entity;
 
 import java.io.Serializable;
 
-import io.swagger.annotations.ApiModelProperty;  
 
 public class User implements Serializable {  
-	@ApiModelProperty(value="用户编号", required = true, example = "1")
-    private Long id;  
-	@ApiModelProperty(value="用户名称", required = true, example = "test")
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7686167837240839095L;
+	private Long id;  
     private String name;  
-  
-    public Long getId() {  
+    private String mobile;
+	
+    private String password;
+    
+    public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Long getId() {  
         return id;  
     }  
   
@@ -26,7 +38,15 @@ public class User implements Serializable {
         this.name = name;  
     }  
   
-    @Override  
+    public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	@Override  
     public boolean equals(Object o) {  
         if (this == o) return true;  
         if (o == null || getClass() != o.getClass()) return false;  
@@ -42,4 +62,5 @@ public class User implements Serializable {
     public int hashCode() {  
         return id != null ? id.hashCode() : 0;  
     }  
+    
 }  
